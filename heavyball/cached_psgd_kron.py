@@ -19,7 +19,7 @@ class ForeachCachedPSGDKron(PSGDBase):
         params (iterable): Iterable of parameters to optimize or dicts defining
             parameter groups.
         lr (float): Learning rate.
-        b1 (float): Momentum parameter.
+        beta (float): Momentum parameter.
         weight_decay (float): Weight decay (L2 penalty).
         preconditioner_update_probability (callable or float, optional): Probability of
             updating the preconditioner. If None, defaults to a schedule that anneals

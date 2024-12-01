@@ -874,7 +874,7 @@ def psgd_lb(A, max_abs):
     return x
 
 
-@decorator_knowngood
+@decorator
 def psgd_update_precond(Q, exprs, G, precond_lr, tiny, oq, store_triu_as_line):
     """Update Kronecker product preconditioner Q with pair (V, G)."""
     exprA, exprGs, _ = exprs
@@ -1130,11 +1130,11 @@ def merge_group(group, *tensors):
             'max_precond_dim'], group.get('split', False)))
     return out
 
+
 def hook_optimizer_into_model(model, optimizer, *args, **kwargs):
     def _step(p: Tensor, o: torch.optim.Optimizer):
         o.step()
         o.zero_grad()
-
 
     for p in model.parameters():
         p.register_post_accumulate_grad_hook(functools.partial(_step, o=optimizer([p], *args, **kwargs)))
